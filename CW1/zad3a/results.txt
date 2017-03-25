@@ -1,0 +1,86 @@
+Start counting time
+
+Creating new list
+User time: 0000004000 ms, System Time: 0000000000 ms, Real Time: 0003149822
+Creating new tree
+User time: 0000000000 ms, System Time: 0000000000 ms, Real Time: 0000428428
+Adding one contact to list
+User time: 0000000000 ms, System Time: 0000000000 ms, Real Time: 0000000542
+Adding one contact to tree
+User time: 0000000000 ms, System Time: 0000000000 ms, Real Time: 0000000570
+Removing one contact from list best case
+User time: 0000000000 ms, System Time: 0000000000 ms, Real Time: 0000001999
+Removing one contact from list worst case 
+User time: 0000000000 ms, System Time: 0000000000 ms, Real Time: 0000018633
+Removing one contact from tree worst case
+User time: 0000000000 ms, System Time: 0000000000 ms, Real Time: 0000002238
+Removing one contact from tree best case
+User time: 0000000000 ms, System Time: 0000000000 ms, Real Time: 0000001234
+Finding one contact from list worst case
+User time: 0000000000 ms, System Time: 0000000000 ms, Real Time: 0000017668
+Finding one contact from list best case
+User time: 0000000000 ms, System Time: 0000000000 ms, Real Time: 0000016090
+Finding one contact from tree
+User time: 0000000000 ms, System Time: 0000000000 ms, Real Time: 0000000912
+Sorting list by name
+User time: 0000000000 ms, System Time: 0000000000 ms, Real Time: 0000324624
+Refactoring tree by email
+User time: 0000000000 ms, System Time: 0000000000 ms, Real Time: 0000449142
+
+Start counting time
+
+Creating new list
+User time: 0000004000 ms, System Time: 0000000000 ms, Real Time: 0003206474
+Creating new tree
+User time: 0000000000 ms, System Time: 0000000000 ms, Real Time: 0000901376
+Adding one contact to list
+User time: 0000000000 ms, System Time: 0000000000 ms, Real Time: 0000000704
+Adding one contact to tree
+User time: 0000000000 ms, System Time: 0000000000 ms, Real Time: 0000000560
+Removing one contact from list best case
+User time: 0000000000 ms, System Time: 0000000000 ms, Real Time: 0000003114
+Removing one contact from list worst case
+User time: 0000000000 ms, System Time: 0000000000 ms, Real Time: 0000022179
+Removing one contact from tree worst case
+User time: 0000000000 ms, System Time: 0000000000 ms, Real Time: 0000002706
+Removing one contact from tree best case
+User time: 0000000000 ms, System Time: 0000000000 ms, Real Time: 0000001373
+Finding one contact from list worst case
+User time: 0000000000 ms, System Time: 0000000000 ms, Real Time: 0000018676
+Finding one contact from list best case
+User time: 0000000000 ms, System Time: 0000000000 ms, Real Time: 0000017019
+Finding one contact from tree
+User time: 0000000000 ms, System Time: 0000000000 ms, Real Time: 0000001531
+Sorting list by name
+User time: 0000000000 ms, System Time: 0000000000 ms, Real Time: 0000347025
+Refactoring tree by email
+User time: 0000000000 ms, System Time: 0000000000 ms, Real Time: 0000488275
+
+Start counting time
+
+Creating new list
+User time: 000004000 ms, System Time: 000000000 ms, Real Time: 002862361
+Creating new tree
+User time: 000000000 ms, System Time: 000000000 ms, Real Time: 000454432
+Adding one contact to list
+User time: 000000000 ms, System Time: 000000000 ms, Real Time: 000000848
+Adding one contact to tree
+User time: 000000000 ms, System Time: 000000000 ms, Real Time: 000000775
+Removing one contact from list best case
+User time: 000000000 ms, System Time: 000000000 ms, Real Time: 000003877
+Removing one contact from list worst case
+User time: 000000000 ms, System Time: 000000000 ms, Real Time: 000019044
+Removing one contact from tree worst case
+User time: 000000000 ms, System Time: 000000000 ms, Real Time: 000002967
+Removing one contact from tree best case
+User time: 000000000 ms, System Time: 000000000 ms, Real Time: 000001571
+Finding one contact from list worst case
+User time: 000000000 ms, System Time: 000000000 ms, Real Time: 000027017
+Finding one contact from list best case
+User time: 000000000 ms, System Time: 000000000 ms, Real Time: 000016145
+Finding one contact from tree
+User time: 000000000 ms, System Time: 000000000 ms, Real Time: 000001481
+Sorting list by name
+User time: 000000000 ms, System Time: 000000000 ms, Real Time: 000380935
+Refactoring tree by email
+User time: 000000000 ms, System Time: 000000000 ms, Real Time: 000477428

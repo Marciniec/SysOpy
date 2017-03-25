@@ -1,0 +1,44 @@
+Permutowanie z uzyciem funkcji systemowych:
+100 rekordow po 4 bajty:
+User time: 0000000000 ms, System Time: 0000000000 ms, Real Time: 0000445124
+100 rekordow po 512 bajtow:
+User time: 0000000000 ms, System Time: 0000000000 ms, Real Time: 0000448046
+100 rekordow po 4096 bajtow:
+User time: 0000000000 ms, System Time: 0000000000 ms, Real Time: 0000701857
+100 rekordow po 8192 bajtow:
+User time: 0000000000 ms, System Time: 0000000000 ms, Real Time: 0001726505
+
+Permutowanie z uzyciem funkcji bibliotecznych:
+100 rekordow po 4 bajty:
+User time: 0000000000 ms, System Time: 0000000000 ms, Real Time: 0000620519
+100 rekordow po 512 bajtow:
+User time: 0000000000 ms, System Time: 0000000000 ms, Real Time: 0002536693
+100 rekordow po 4096 bajtow:
+User time: 0000000000 ms, System Time: 0000000000 ms, Real Time: 0001759338
+100 rekordow po 8192 bajtow:
+User time: 0000000000 ms, System Time: 0000000000 ms, Real Time: 0002515001
+
+Sortowanie bombelkowe z uzyciem funkcji systemowych:
+100 rekordow po 4 bajty:
+User time: 0000004000 ms, System Time: 0000012000 ms, Real Time: 0014860273
+100 rekordow po 512 bajtow:
+User time: 0000000000 ms, System Time: 0000020000 ms, Real Time: 0022219644
+100 rekordow po 4096 bajtow:
+User time: 0000000000 ms, System Time: 0000024000 ms, Real Time: 0021865211
+100 rekordow po 8192 bajtow:
+User time: 0000008000 ms, System Time: 0000028000 ms, Real Time: 0035806753
+
+
+Sortowanie bombelkowe z uzyciem funkcji bibliotecznych:
+100 rekordow po 4 bajty:
+User time: 0000004000 ms, System Time: 0000008000 ms, Real Time: 0013641393
+100 rekordow po 512 bajtow:
+User time: 0000000000 ms, System Time: 0000020000 ms, Real Time: 0018833738
+100 rekordow po 4096 bajtow:
+User time: 0000004000 ms, System Time: 0000020000 ms, Real Time: 0024232874
+100 rekordow po 8192 bajtow:
+User time: 0000004000 ms, System Time: 0000016000 ms, Real Time: 0022320507
+
+Wnioski:
+Mozna zauwazyc, ze funkcje shuffle i sort sa szybsze dla przypadku gdy uzylismy
+funkcji systemowych 
