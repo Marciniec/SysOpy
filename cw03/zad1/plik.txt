@@ -1,0 +1,11 @@
+#OKIVAR ./main.c
+ps aux
+ls -l
+./dem.out OKIVAR
+./dem.out PATH
+cat plik.txt
+ls -l /home/countess
+#VARIABE1 value
+./dem.out VARIABE1
+#VARIABE1
+./dem.out VARIABE1
