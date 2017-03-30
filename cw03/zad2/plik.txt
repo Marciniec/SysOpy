@@ -1,0 +1,4 @@
+ls -l
+ps aux
+./loop.out
+cat main.c
