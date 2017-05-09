@@ -105,6 +105,7 @@ int main(int args, char** argv) {
         }
         clock_gettime(CLOCK_MONOTONIC,&time);
         printf("The barber is now cutting hair %d  %ld\n",++count,(long)(time.tv_sec*1000000+time.tv_nsec));
+sleep(3);
         clock_gettime(CLOCK_MONOTONIC,&time);
         printf("Barber finished cutting hair of customer %d %ld \n",count,(long)(time.tv_sec*1000000+time.tv_nsec));
         if(sem_getvalue(client,&value)==-1){

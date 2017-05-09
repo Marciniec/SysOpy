@@ -217,6 +217,7 @@ int main(int argv, char ** args) {
     init_semaphore( semaphore_id, CLIENTS, 0);
     init_semaphore( semaphore_id, BARBER, 0);
     init_semaphore( semaphore_id, MUTEX, 1);
+    printf("Barber opens shop\n");
     printf("%d chairs at barbershop \n",*chairs);
     init_queue();
     int pid=0;
@@ -224,21 +225,22 @@ int main(int argv, char ** args) {
     signal(SIGINT,handler);
 
         while (1){
-            down((unsigned short) semaphore_id, CLIENTS, &semaphore);
-            down((unsigned short) semaphore_id,MUTEX,&semaphore);
+            down(semaphore_id, CLIENTS, &semaphore);
+            down(semaphore_id,MUTEX,&semaphore);
+            sleep(1);
             *waiting_customers = *waiting_customers-1;
-            up((unsigned short) semaphore_id, BARBER, &semaphore);
-            up((unsigned short) semaphore_id, MUTEX, &semaphore);
+            up(semaphore_id, BARBER, &semaphore);
+            up(semaphore_id, MUTEX, &semaphore);
             clock_gettime(CLOCK_MONOTONIC,&time);
             if(!isEmpty()) {
                 pid= pop();
             }
-            printf("The barber is now cutting hair %d  %ld\n",pid,(long)(time.tv_sec*1000000+time.tv_nsec));
-            sleep(6); //cutting hair
+            printf("The barber is now cutting hair of customer: %d time: %ld\n",pid,(long)(time.tv_sec*1000000+time.tv_nsec));
+            sleep(3); //cutting hair
             clock_gettime(CLOCK_MONOTONIC,&time);
-            printf("Barber finished cutting hair of customer %d %ld \n",pid,(long)(time.tv_sec*1000000+time.tv_nsec));
+            printf("Barber finished cutting hair of customer %d time: %ld \n",pid,(long)(time.tv_sec*1000000+time.tv_nsec));
             clock_gettime(CLOCK_MONOTONIC,&time);
-            if (semctl(semaphore_id,CLIENTS,GETVAL,&arg)==0) printf("Barber sleeps %ld\n",(long)(time.tv_sec*1000000+time.tv_nsec));
+            if (semctl(semaphore_id,CLIENTS,GETVAL,&arg)==0) printf("Barber falls asleep time: %ld\n",(long)(time.tv_sec*1000000+time.tv_nsec));
         }
 
 

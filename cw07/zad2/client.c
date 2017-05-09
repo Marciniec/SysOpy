@@ -53,14 +53,15 @@ int main(int args, char** argv){
                     sem_post(mutex);
                 }
             }
-            clock_gettime(CLOCK_MONOTONIC,&time);
-            printf("Customer %d left the shop being cut %d times %ld\n", getpid(), s,(long)(time.tv_sec*1000000+time.tv_nsec));
-            exit(0);
 
-        } else if(pid>0) {
-            wait(&status);
+
         }
     }
+
+        wait(&status);
+        clock_gettime(CLOCK_MONOTONIC,&time);
+        printf("Customer %d left the shop being cut %d times %ld\n", getpid(), s,(long)(time.tv_sec*1000000+time.tv_nsec));
+        exit(0);
     sem_close(barber);
     sem_close(mutex);
     sem_close(client);
