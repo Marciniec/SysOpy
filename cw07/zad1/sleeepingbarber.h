@@ -17,5 +17,15 @@ union semnum {
     unsigned short *array;
 
 };
+struct node{
+    struct node*next;
+    pid_t val;
+};
+struct fifo_queue{
+    int head;
+    int tail;
+    pid_t pids[1000];
+
+};
 
 #endif //ZADANIE1_SLEEEPINGBARBER_H
