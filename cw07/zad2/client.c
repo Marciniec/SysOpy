@@ -114,7 +114,10 @@ int main(int args, char** argv){
             while (been_cut<s){
 
                 clock_gettime(CLOCK_MONOTONIC,&time);
-                sem_wait(mutex);
+                if( sem_wait(mutex)==-1){
+                    perror("Error during sem_wait(mutex)");
+                    exit(1);
+                }
                 if(*waiting<*chairs){
                     push(getpid());
                     clock_gettime(CLOCK_MONOTONIC,&time);
@@ -125,17 +128,29 @@ int main(int args, char** argv){
                         printf("Customer %d is being seated  time: %ld\n", getpid(),(long)(time.tv_sec*1000000+time.tv_nsec));
                     }
 
-                    sem_post(client);
+                    if(sem_post(client) == -1){
+                        perror("Error during sem_post(client)");
+                        exit(1);
+                    }
                     sleep(1);
-                    sem_post(mutex);
-                    sem_wait(barber);
+                    if(sem_post(mutex)==-1){
+                        perror("Error during sem_pos(mutex)");
+                        exit(1);
+                    }
+                    if(sem_wait(barber)==-1){
+                        perror("Error during sem_pos(barber)");
+                        exit(1);
+                    }
                     sleep(3);
                     been_cut++;
 
                 } else{
                     clock_gettime(CLOCK_MONOTONIC,&time);
                     printf("Customer %d left shop due to lack of chairs time: %ld \n", getpid(),(long)(time.tv_sec*1000000+time.tv_nsec));
-                    sem_post(mutex);
+                    if(sem_post(mutex)==-1){
+                        perror("Error during sem_pos(mutex)");
+                        exit(1);
+                    }
                     while (*waiting>=*chairs){
                         sleep(1);
                     }
