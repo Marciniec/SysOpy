@@ -6,7 +6,34 @@
 #include <wait.h>
 #include <time.h>
 #include "sleeepingbarber.h"
+void push(pid_t pid){
+    struct fifo_queue *queue;
+    int queue_id;
+    char * home = getenv("HOME");
+    key_t queue_key = ftok(home,'t');
+    queue_id=shmget(queue_key,0,0);
+    queue = shmat(queue_id,NULL,0);
+    queue->pids[queue->tail++]=pid;
 
+}
+pid_t pop(){
+    struct fifo_queue *queue;
+    int queue_id;
+    char * home = getenv("HOME");
+    key_t queue_key = ftok(home,'t');
+    queue_id=shmget(queue_key,0,0);
+    queue = shmat(queue_id,NULL,0);
+    return queue->pids[queue->head++];
+}
+int isEmpty(){
+    struct fifo_queue *queue;
+    int queue_id;
+    char * home = getenv("HOME");
+    key_t chairs_key = ftok(home,'t');
+    queue_id=shmget(chairs_key,0,0);
+    queue = shmat(queue_id,NULL,0);
+    return queue->head==queue->tail;
+}
 void up(unsigned short semaphore_id, unsigned short semaphore_num, struct sembuf *semaphore){
     semaphore->sem_num=semaphore_num;
     semaphore->sem_op =1;
@@ -20,11 +47,7 @@ void  down(unsigned short semaphore_id, unsigned short semaphore_num, struct sem
     semaphore->sem_flg =0;
     semop(semaphore_id,semaphore,1);
 }
-void init_semaphore(unsigned short semaphore_id, unsigned short semaphore_num, int val){
-    union semnum arg;
-    arg.val = val;
-    semctl(semaphore_id,semaphore_num,SETVAL,arg);
-}
+
 int main(int argv, char ** args){
     char * home = getenv("HOME");
     int no_clients = atoi(args[1]);
@@ -58,6 +81,7 @@ int main(int argv, char ** args){
                 if(semctl(semaphore_id,CLIENTS,GETVAL,arg)==0) printf("Wakening up barber by %d  %ld\n",getpid(),(long)(time.tv_sec*1000000+time.tv_nsec));
                 down((unsigned short) semaphore_id, MUTEX, &semaphore);
                 if (*waiting_customers < *chairs) {
+                    push(getpid());
                     clock_gettime(CLOCK_MONOTONIC,&time);
                     printf("Customer %d is seated %ld \n", getpid(),(long)(time.tv_sec*1000000+time.tv_nsec));
                     *waiting_customers = *waiting_customers + 1;
@@ -72,15 +96,13 @@ int main(int argv, char ** args){
 
             }
             clock_gettime(CLOCK_MONOTONIC,&time);
-            printf("Customer %d left the shop beeing cutted %d times %ld\n", getpid(), s,(long)(time.tv_sec*1000000+time.tv_nsec));
+            printf("Customer %d left the shop beeing cut %d times %ld\n", getpid(), s,(long)(time.tv_sec*1000000+time.tv_nsec));
             exit(0);
-        } else if(pid >0){
-            wait(&status);
-
         }
 
+
     }
-    return 0;
+    wait(&status);
 }
 
 
