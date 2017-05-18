@@ -56,6 +56,7 @@ void *threadFunction(void *arg){
             for(int j = 0 ; j < thread_no ; ++j){
                 if(! pthread_equal(threads_arr[j],pthread_self())) pthread_cancel(threads_arr[j]);
             }
+
             pthread_mutex_unlock(&mutex);
             free(recordID);
             pthread_cancel(pthread_self());

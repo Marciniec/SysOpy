@@ -23,5 +23,11 @@ main3: main3.o
 
 main3.o: main3.c
 			$(CC)  $(CFLAG) $^ -o $@
+fill: fill.o
+			$(CC) $^ -o $@.out
+
+fill.o: fill.c
+			$(CC)  $(CFLAG) $^ -o $@
+
 clean:
 			rm -f *.a *.o *.out
