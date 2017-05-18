@@ -19,6 +19,7 @@ struct record{
     int id;
     char text[1020];
 };
+int finish =0;
 long gettid() {
     return syscall(SYS_gettid);
 }
@@ -35,35 +36,37 @@ void *threadFunction(void *arg){
     }
 
     ssize_t actually_read;
-    pthread_mutex_lock(&mutex);
-    for (int i = 0; i < record_number; ++i) {
+    while (!finish) {
+        pthread_mutex_lock(&mutex);
+        for (int i = 0; i < record_number; ++i) {
 
 
-        struct record * buf = malloc(sizeof(struct record));
-        char * recordID = malloc((buffer+1)*sizeof(char));
-        actually_read =  read(file_des, buf, buffer);
-        if(actually_read==-1){
-            perror("Error occurred during reading");
-            exit(1);
-        }
-        strcpy(recordID,buf->text);
-        recordID[actually_read]='\0';
-        if(strstr(recordID,word)!=NULL){
-            printf("Thread with TID: %ld found %s in record %d\n",gettid(),word,buf->id);
-        }
-        if(actually_read ==0){
-            for(int j = 0 ; j < thread_no ; ++j){
-                if(! pthread_equal(threads_arr[j],pthread_self())) pthread_cancel(threads_arr[j]);
+            struct record *buf = malloc(sizeof(struct record));
+            char *recordID = malloc((buffer + 1) * sizeof(char));
+            actually_read = read(file_des, buf, buffer);
+            if (actually_read == -1) {
+                perror("Error occurred during reading");
+                exit(1);
             }
-            pthread_mutex_unlock(&mutex);
-            free(recordID);
-            pthread_cancel(pthread_self());
-            return (void*)0;
+            strcpy(recordID, buf->text);
+            recordID[actually_read] = '\0';
+            if (strstr(recordID, word) != NULL) {
+                printf("Thread with TID: %ld found %s in record %d\n", gettid(), word, buf->id);
+            }
+            if (actually_read == 0) {
+                finish = 0;
+                for (int j = 0; j < thread_no; ++j) {
+                    if (!pthread_equal(threads_arr[j], pthread_self())) pthread_cancel(threads_arr[j]);
+                }
+                pthread_mutex_unlock(&mutex);
+                free(recordID);
+                pthread_cancel(pthread_self());
+                return (void *) 0;
+            }
+
         }
-
+        pthread_mutex_unlock(&mutex);
     }
-    pthread_mutex_unlock(&mutex);
-
     return (void*)0;
 
 }

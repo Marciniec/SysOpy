@@ -36,37 +36,38 @@ void *threadFunction(void *arg){
     }
 
     ssize_t actually_read;
-    pthread_mutex_lock(&mutex);
+    while (!finish) {
+        pthread_mutex_lock(&mutex);
 
-    for (int i = 0; i < record_number; ++i) {
-        if(finish) break;
-        struct record * buf = malloc(sizeof(struct record));
-        char * recordID = malloc((buffer+1)*sizeof(char));
-        actually_read =  read(file_des, buf, buffer);
-        if(actually_read==-1){
-            perror("Error occurred during reading");
+        for (int i = 0; i < record_number; ++i) {
+            struct record *buf = malloc(sizeof(struct record));
+            char *recordID = malloc((buffer + 1) * sizeof(char));
+            actually_read = read(file_des, buf, buffer);
+            if (actually_read == -1) {
+                perror("Error occurred during reading");
+                exit(1);
+            }
+            if (actually_read == 0) break;
+            strcpy(recordID, buf->text);
+            recordID[actually_read] = '\0';
+            if (strstr(recordID, word) != NULL) {
+                printf("Thread with TID: %ld found %s in record %d\n", gettid(), word, buf->id);
+                finish = 1;
+                for (int j = 0; j < thread_no; ++j) {
+                    if (!pthread_equal(threads_arr[j], pthread_self())) pthread_cancel(threads_arr[j]);
+                }
+                pthread_mutex_unlock(&mutex);
+                free(recordID);
+                pthread_cancel(pthread_self());
+                return (void *) 0;
+            }
+
+        }
+        pthread_mutex_unlock(&mutex);
+        if (pthread_setcancelstate(PTHREAD_CANCEL_ENABLE, NULL) == EINVAL) {
+            fprintf(stderr, "Error occurred during pthread_setcancelstate\n");
             exit(1);
         }
-        if(actually_read==0) break;
-        strcpy(recordID,buf->text);
-        recordID[actually_read]='\0';
-        if(strstr(recordID,word)!=NULL){
-            printf("Thread with TID: %ld found %s in record %d\n",gettid(),word,buf->id);
-            finish =1;
-            for(int j = 0 ; j < thread_no ; ++j){
-                if(! pthread_equal(threads_arr[j],pthread_self())) pthread_cancel(threads_arr[j]);
-            }
-            pthread_mutex_unlock(&mutex);
-            free(recordID);
-            pthread_cancel(pthread_self());
-            return (void*)0;
-        }
-
-    }
-    pthread_mutex_unlock(&mutex);
-    if(pthread_setcancelstate(PTHREAD_CANCEL_ENABLE,NULL)==EINVAL){
-        fprintf(stderr,"Error occurred during pthread_setcancelstate\n");
-        exit(1);
     }
     return (void*)0;
 

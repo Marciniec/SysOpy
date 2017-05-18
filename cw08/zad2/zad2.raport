@@ -1,0 +1,100 @@
+a)
+1.
+SIGUSR1: Thread 1 "main.out" received signal SIGUSR1, User defined signal 1.
+SIGTERM: Thread 1 "main.out" received signal SIGTERM, Terminated.
+SIGKILL: Program terminated with signal SIGKILL, Killed.
+SIGSTOP: Thread 1 "main.out" received signal SIGSTOP, Stopped (signal).
+2.
+SIGUSR1:
+[New Thread 0x7ffff77f0700 (LWP 5050)]
+[New Thread 0x7fffeefef700 (LWP 5051)]
+[Thread 0x7ffff77f0700 (LWP 5050) exited]
+[New Thread 0x7ffff6fef700 (LWP 5052)]
+[Thread 0x7fffeefef700 (LWP 5051) exited]
+Thread with TID: 5052 found Lorem in record 10
+[New Thread 0x7ffff67ee700 (LWP 5053)]
+[New Thread 0x7ffff5dd7700 (LWP 5054)]
+[Thread 0x7ffff67ee700 (LWP 5053) exited]
+[Thread 0x7ffff5dd7700 (LWP 5054) exited]
+[Thread 0x7ffff6fef700 (LWP 5052) exited]
+[Inferior 1 (process 5046) exited normally]
+
+SIGTERM:
+[New Thread 0x7ffff77f0700 (LWP 5332)]
+[New Thread 0x7ffff6fef700 (LWP 5333)]
+[Thread 0x7ffff77f0700 (LWP 5332) exited]
+[New Thread 0x7ffff67ee700 (LWP 5334)]
+[Thread 0x7ffff6fef700 (LWP 5333) exited]
+Thread with TID: 5334 found Lorem in record 10
+[New Thread 0x7ffff5fed700 (LWP 5335)]
+[New Thread 0x7ffff55d6700 (LWP 5336)]
+[Thread 0x7ffff5fed700 (LWP 5335) exited]
+[Thread 0x7ffff55d6700 (LWP 5336) exited]
+[Thread 0x7ffff67ee700 (LWP 5334) exited]
+[Inferior 1 (process 5328) exited normally]
+
+SIGKILL: Program terminated with signal SIGKILL, Killed.
+
+SIGSTOP: Thread 1 "main.out" received signal SIGSTOP, Stopped (signal).
+
+
+3.
+SIGUSR1:
+Thread with TID: 6331 found Lorem in record 10
+Received signal: User defined signal 1, my PID is: 6328, my TID is: 6328
+SIGTERM:
+Received signal: Terminated, my PID is: 6460, my TID is: 6460
+Thread with TID: 6463 found Lorem in record 10
+SIGKILL: Killed
+SIGSTOP: [2]+  Stopped                 ./main.out 5 text.txt 4 Lorem
+
+
+
+4.
+SIGUSR1:
+[New Thread 0x7ffff77f0700 (LWP 7045)]
+[New Thread 0x7ffff6fef700 (LWP 7046)]
+[Thread 0x7ffff77f0700 (LWP 7045) exited]
+[New Thread 0x7ffff67ee700 (LWP 7047)]
+[Thread 0x7ffff6fef700 (LWP 7046) exited]
+Thread with TID: 7047 found Lorem in record 10
+[New Thread 0x7ffff5fed700 (LWP 7048)]
+[New Thread 0x7ffff55d6700 (LWP 7049)]
+[Thread 0x7ffff5fed700 (LWP 7048) exited]
+[Thread 0x7ffff55d6700 (LWP 7049) exited]
+[Thread 0x7ffff67ee700 (LWP 7047) exited]
+[Inferior 1 (process 7041) exited normally]
+
+SIGTERM:
+[New Thread 0x7ffff77f0700 (LWP 7161)]
+[New Thread 0x7ffff6fef700 (LWP 7162)]
+[Thread 0x7ffff77f0700 (LWP 7161) exited]
+[New Thread 0x7ffff67ee700 (LWP 7163)]
+[Thread 0x7ffff6fef700 (LWP 7162) exited]
+Thread with TID: 7163 found Lorem in record 10
+[New Thread 0x7ffff5fed700 (LWP 7164)]
+[New Thread 0x7ffff55d6700 (LWP 7165)]
+[Thread 0x7ffff5fed700 (LWP 7164) exited]
+[Thread 0x7ffff55d6700 (LWP 7165) exited]
+[Thread 0x7ffff67ee700 (LWP 7163) exited]
+[Inferior 1 (process 7157) exited normally]
+SIGKILL: Killed
+SIGSTOP: [3]+  Stopped                 ./main.out 5 text.txt 4 Lorem
+
+5.
+SIGUSR1:
+Received signal: User defined signal 1, my PID is: 7558, my TID is: 7559
+Thread with TID: 7561 found Lorem in record 10
+
+SIGTERM:
+Received signal: Terminated, my PID is: 7630, my TID is: 7631
+Thread with TID: 7633 found Lorem in record 10
+
+SIGKILL: Killed
+SIGSTOP:[4]+  Stopped                 ./main.out 5 text.txt 4 Lorem
+
+
+b) Thread 7 "main.out" received signal SIGFPE, Arithmetic exception.
+Operating System: Linux Mint 18 Cinnamon 64-bit
+Linux Kernel: 4.4.0-62-generic
+Computer: Lenovo G50-80
