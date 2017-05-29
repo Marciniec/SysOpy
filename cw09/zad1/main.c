@@ -47,7 +47,7 @@ struct node pop (){
     return result;
 }
 void readF(int n){
-    int iter, counter = 0;
+    int counter = 0;
     for (int i = 0; i < 100; ++i) {
         if(array[i] %n ==0){
             counter++;
