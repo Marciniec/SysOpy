@@ -5,20 +5,16 @@
 #include <memory.h>
 #include <wait.h>
 
-extern char ** environ;
-
 void handleEnviromentVariable(char* line){
     char * envName;
     char *value;
     char * token;
+    line[strlen(line) -1] = '\0';  //changing '\n' to '\0'
     token = strtok(line, " ");
     envName = token+1;
     token = strtok(NULL, " ");
     value = token;
     if(value == NULL) {
-      for (int i = 0; envName[i]!='\0'; i++) {
-        if(envName[i]=='\n') envName[i] = '\0';
-      }
       unsetenv(envName);
     }
     else setenv(envName,value, 1);
@@ -27,6 +23,7 @@ void handleEnviromentVariable(char* line){
 void handleFunctions(char *line){
     char * args[10]={NULL};
     char * tmp=malloc(sizeof(line));
+    line[strlen(line) -1] = '\0';
     sprintf(tmp,"%s", line);
     int i = 0;
     char * token;
@@ -40,11 +37,6 @@ void handleFunctions(char *line){
         args[i] = token;
         i++;
     }
-    i-=2;
-    for (int j = 0; args[i][j]!='\0'; ++j) {  //changing '\n' into '\0'
-        if( args[i][j]=='\n') args[i][j]='\0';
-    }
-
     pid = fork();
     if(pid == 0) {
       if(execvp(args[0], args) == -1){
